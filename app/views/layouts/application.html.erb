@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<!-- Devise gem: current owner and destroy_owner_session_path -->
+<% if current_owner %>
+	<%=link_to "Logout", destroy_owner_session_path, method: :delete  %>
+<% end %>
+
+
 <%= yield %>
 
 </body>
