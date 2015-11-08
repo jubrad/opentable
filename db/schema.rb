@@ -31,12 +31,10 @@ ActiveRecord::Schema.define(version: 20151106164957) do
   add_index "owners", ["email"], name: "index_owners_on_email", unique: true
   add_index "owners", ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
 
-  create_table "owners_tables", force: :cascade do |t|
-  end
-
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
+    t.string   "address"
     t.string   "phone"
     t.string   "weburl"
     t.datetime "created_at",  null: false
