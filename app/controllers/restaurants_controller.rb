@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
 
 # Devise gem - authentication 
-before_action :authenticate_owner!, except: [:index, :show]
+before_action :authenticate_owner!
 
 def index
 	@restaurants = Restaurant.all
@@ -12,15 +12,18 @@ def show
 end
 
 def new
-	@restaurant = Restaurant.new
+	@owner = Owner.find(current_owner.id)
+	@restaurant = @owner.restaurants.build
 end
 
 def edit
+	@owner = Owner.find(current_owner.id)
 	@restaurant = Restaurant.find(params[:id])
 end
 
 def create
-	@restaurant = Restaurant.new(restaurant_params)
+	@owner = Owner.find(current_owner.id)
+	@restaurant = @owner.restaurants.create(restaurant_params)
 	if @restaurant.save
 		redirect_to @restaurant, notice: "Restaurant created"
 	else

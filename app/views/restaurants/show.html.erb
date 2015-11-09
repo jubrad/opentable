@@ -20,6 +20,14 @@
   <strong>Website:</strong>
   <%= @restaurant.weburl %>
 </p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<p>
+  <strong>Owner:</strong>
+  <%= @restaurant.owner.name %>
+</p>
+<br>
+<% if current_owner %>
+  <% if @restaurant.owner_id == current_owner.id %>
+    <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+  <% end %>
+<% end %>
 <%= link_to 'Back', restaurants_path %>

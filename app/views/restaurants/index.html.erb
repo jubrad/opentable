@@ -16,8 +16,12 @@
 				<td><%= restaurant.name %></td>
 				<td><%= restaurant.phone %></td>
 				<td><%= link_to "Show", restaurant %></td>
+				<% if current_owner %>
+				<% if restaurant.owner_id == current_owner.id %>
 				<td><%= link_to "Edit", edit_restaurant_path(restaurant) %></td>
 				<td><%= link_to "Delete", restaurant, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+				<% end %>
+				<% end %>
 			</tr>
 		<% end %>
 		
