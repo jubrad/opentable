@@ -12,18 +12,15 @@ def show
 end
 
 def new
-	@owner = Owner.find(current_owner.id)
-	@restaurant = @owner.restaurants.build
+	@restaurant = current_owner.restaurants.build
 end
 
 def edit
-	@owner = Owner.find(current_owner.id)
-	@restaurant = Restaurant.find(params[:id])
+	@restaurant = current_owner.restaurants.find(params[:id])
 end
 
 def create
-	@owner = Owner.find(current_owner.id)
-	@restaurant = @owner.restaurants.create(restaurant_params)
+	@restaurant = current_owner.restaurants.build(restaurant_params)
 	if @restaurant.save
 		redirect_to @restaurant, notice: "Restaurant created"
 	else
@@ -32,7 +29,7 @@ def create
 end
 
 def update
-	@restaurant = Restaurant.find(params[:id])
+	@restaurant = current_owner.restaurants.find(params[:id])
 	if @restaurant.update_attributes(restaurant_params)
 		redirect_to @restaurant, notice: "Restaurant updated"
 	else
@@ -41,7 +38,7 @@ def update
 end
 
 def destroy
-	@restaurant = Restaurant.find(params[:id])
+	@restaurant = current_owner.restaurants.find(params[:id])
 	@restaurant.destroy
 	redirect_to restaurants_url, notice: "Restaurant deleted"
 end

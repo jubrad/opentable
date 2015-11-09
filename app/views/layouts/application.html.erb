@@ -11,6 +11,8 @@
 <!-- Devise gem: current owner and destroy_owner_session_path -->
 <% if current_owner %>
 	<%=link_to "Logout", destroy_owner_session_path, method: :delete  %>
+<% else %>
+	<%= link_to "Login", new_owner_session_path %>
 <% end %>
 
 
