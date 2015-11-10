@@ -17,5 +17,7 @@
   <%= @restaurant.weburl %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<% if @restaurant.owner == current_owner %>
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<% end %>
 <%= link_to 'Back', restaurants_path %>

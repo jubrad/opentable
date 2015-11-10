@@ -3,25 +3,27 @@
 <h1>Listing Restaurants</h1>
 
 <table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Phone</th>
-		</tr>
-	</thead>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
 
-	<tbody>
-		<% @restaurants.each do |restaurant| %>
-			<tr>
-				<td><%= restaurant.name %></td>
-				<td><%= restaurant.phone %></td>
-				<td><%= link_to "Show", restaurant %></td>
-				<td><%= link_to "Edit", edit_restaurant_path(restaurant) %></td>
-				<td><%= link_to "Delete", restaurant, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-			</tr>
-		<% end %>
-		
-	</tbody>
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.phone %></td>
+        <td><%= link_to "Show", restaurant %></td>
+        <% if restaurant.owner == current_owner %>
+          <td><%= link_to "Edit", edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to "Delete", restaurant, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
+      </tr>
+    <% end %>
+
+  </tbody>
 </table>
 
 <br>
